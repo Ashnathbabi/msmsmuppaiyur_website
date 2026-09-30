@@ -1,0 +1,371 @@
+@keyframes rotate360 {
+  from {
+    transform: translateX(-50%) rotate(0deg);
+  }
+
+  to {
+    transform: translateX(-50%) rotate(360deg);
+  }
+}
+.shortContent_wrap h2{
+    color:#fff;
+}
+.shortconten_wrapper {
+    position: relative;
+    z-index: 1;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.shortconten_wrapper .container {
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   CTA HEADER
+========================================================= */
+
+.shortconten_wrapper .cta-header {
+    position: relative;
+    z-index: 1;
+
+    min-height: 255px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    align-items: center;
+}
+
+
+/* =========================================================
+   LEFT CONTENT
+========================================================= */
+
+.shortconten_wrapper .heading1 {
+    position: relative;
+    z-index: 5;
+
+    padding-left: 45px;
+    padding-top: 2px;
+}
+
+.heading1 h2 {
+    margin: 0;
+
+    color: #fff;
+
+    font-family: 'Figtree', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 27px;
+    letter-spacing: -0.3px;
+}
+
+.heading1 p {
+    width: 360px;
+
+    margin: 0;
+
+    color: #fff;
+
+    font-family: 'Figtree', sans-serif;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 15px;
+    letter-spacing: -0.1px;
+}
+
+
+/* SPACING */
+
+.heading-space {
+    height: 12px;
+}
+
+.button-space {
+    height: 12px;
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.short-btn {
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+
+    gap: 3px;
+
+    height: 31px;
+
+    padding: 0 12px;
+
+    color: #2e0797;
+
+    background: #fff;
+
+    border-radius: 5px;
+
+    text-decoration: none;
+
+    font-family: 'Figtree', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+
+    transition: all 0.3s ease;
+}
+
+.short-btn svg {
+    transform: rotate(-45deg);
+
+    transition: all 0.3s ease;
+}
+
+.short-btn:hover {
+    color: #fff;
+    background: #df5ba6;
+}
+
+.short-btn:hover svg {
+    transform: rotate(0deg);
+}
+
+
+/* =========================================================
+   RIGHT IMAGE AREA
+========================================================= */
+
+.shortconten_wrapper .cta-images {
+    position: relative;
+
+    width: 100%;
+    height: 255px;
+}
+
+
+/* =========================================================
+   ELEMENTS 7
+========================================================= */
+
+.shortconten_wrapper .cta-images .elements7 {
+    position: absolute;
+
+    z-index: 0;
+
+    top: 0;
+    left: 80px;
+
+    width: 250px;
+    height: 250px;
+
+    object-fit: contain;
+
+    opacity: .5;
+
+    animation: rotate360 12s linear infinite;
+}
+
+@keyframes rotate360 {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+.aniamtion-key-1 {
+    position: relative;
+    animation-name: animation-1;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+@keyframes animation-1{
+    0% {
+    transform: translateY(0);
+}
+100% {
+    transform: translateY(30px);
+}
+}
+
+/* =========================================================
+   STUDENT IMAGE
+========================================================= */
+
+.shortconten_wrapper .cta-images .img1 {
+    position: absolute;
+
+    z-index: 2;
+
+    top: 0;
+    right: 65px;
+
+    width: 160px;
+
+    height: 255px;
+
+    display: flex;
+    align-items: flex-end;
+}
+
+.shortconten_wrapper .cta-images .img1 img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+
+/* =========================================================
+   FEATURE LIST
+========================================================= */
+
+.shortconten_wrapper .cta-images ul {
+    position: absolute;
+
+    z-index: 5;
+
+    top: 18px;
+    left: -20px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+
+/* =========================================================
+   FEATURE ITEM
+========================================================= */
+
+.shortconten_wrapper .cta-images ul li a {
+    display: flex;
+    align-items: center;
+
+    width: max-content;
+
+    color: #050734;
+
+    font-family: 'Figtree', sans-serif;
+    font-size: 9px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 16px;
+
+    background: #fff;
+
+    border-radius: 5px;
+
+    padding: 5px 8px;
+
+    margin-bottom: 8px;
+
+    text-decoration: none;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, .08);
+}
+
+.shortconten_wrapper .cta-images ul li img {
+    width: 9px;
+    height: 9px;
+
+    margin: 0 4px 0 0;
+}
+
+.shortconten_wrapper .cta-images ul li:nth-child(2) {
+    margin-left: -20px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 767px) {
+
+    .shortconten_wrapper {
+        min-height: 520px;
+    }
+
+    .shortconten_wrapper .container {
+        max-width: 100%;
+    }
+
+    .shortconten_wrapper .cta-header {
+        min-height: 520px;
+
+        display: block;
+    }
+
+    .shortconten_wrapper .heading1 {
+        padding: 40px 25px 0;
+    }
+
+    .heading1 h2 {
+        font-size: 30px;
+        line-height: 34px;
+    }
+
+    .heading1 p {
+        width: 100%;
+
+        font-size: 13px;
+        line-height: 20px;
+    }
+
+    .shortconten_wrapper .cta-images {
+        height: 285px;
+
+        margin-top: 20px;
+    }
+
+    .shortconten_wrapper .cta-images .elements7 {
+        left: 50%;
+        top: 0;
+
+        width: 270px;
+        height: 270px;
+
+        transform: translateX(-50%);
+    }
+
+    .shortconten_wrapper .cta-images .img1 {
+        top: 0;
+        right: 50%;
+
+        width: 180px;
+        height: 285px;
+
+        transform: translateX(50%);
+    }
+
+    .shortconten_wrapper .cta-images ul {
+        top: 20px;
+        left: 10%;
+    }
+}

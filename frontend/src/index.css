@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  --breakpoint-desktop: 1400px;
+}
+
+h2 {
+  color: #050734;
+  font-family: "Figtree", sans-serif;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 48px;
+  transition: all 0.4s;
+}
+
+p {
+  /* color: #37385c; */
+  font-family: "Figtree", sans-serif;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px;
+  letter-spacing: -0.18px;
+}

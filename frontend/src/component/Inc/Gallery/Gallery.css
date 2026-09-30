@@ -1,0 +1,9 @@
+.gallery-img::after {
+    background: #2d3381;
+    opacity: .8;
+    transform: translateY(-110%);
+}
+
+.gallery-img:hover::after {
+    transform: none;
+}

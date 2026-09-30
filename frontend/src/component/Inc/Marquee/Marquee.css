@@ -1,0 +1,359 @@
+/* =========================================================
+   MARQUEE SECTION
+========================================================= */
+
+.marquee-section {
+  position: relative;
+  z-index: 20;
+  width: 100%;
+  overflow: hidden;
+
+  /* Desktop overlap */
+  margin-top: -67px;
+}
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.marquee-container {
+  display: flex;
+  width: 100%;
+  min-height: 80px;
+  background: #00001b;
+  overflow: hidden;
+}
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.marquee-heading {
+  position: relative;
+
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 32px;
+
+  background: #00001b;
+
+  border-right: 4px solid #ffffff;
+
+  z-index: 5;
+}
+
+.marquee-heading span {
+  position: relative;
+
+  white-space: nowrap;
+
+  color: #ffffff;
+
+  font-family: "Figtree", sans-serif;
+
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* =========================================================
+   SCROLL AREA
+========================================================= */
+
+.marquee-scroll-area {
+  position: relative;
+
+  flex: 1 1 auto;
+
+  min-width: 0;
+
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+}
+
+/* =========================================================
+   TRACK
+========================================================= */
+
+.marquee-track {
+  display: flex;
+  align-items: center;
+
+  width: max-content;
+
+  animation: marquee-scroll 15s linear infinite;
+
+  will-change: transform;
+}
+
+/* =========================================================
+   TEXT
+========================================================= */
+
+.marquee-text {
+  flex: 0 0 auto;
+
+  margin: 0;
+
+  padding: 0 80px;
+
+  white-space: nowrap;
+
+  color: #ffffff;
+
+  font-family: "Figtree", sans-serif;
+
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* =========================================================
+   HOVER - OPTIONAL
+========================================================= */
+
+.marquee-scroll-area:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* =========================================================
+   LARGE TABLET
+   1200px
+========================================================= */
+
+@media (max-width: 1200px) {
+
+  .marquee-section {
+    margin-top: -55px;
+  }
+
+  .marquee-container {
+    min-height: 75px;
+  }
+
+  .marquee-heading {
+    padding: 0 26px;
+  }
+
+  .marquee-heading span {
+    font-size: 18px;
+  }
+
+  .marquee-text {
+    padding: 0 60px;
+    font-size: 18px;
+  }
+
+  .marquee-track {
+    animation-duration: 14s;
+  }
+}
+
+/* =========================================================
+   TABLET
+   992px
+========================================================= */
+
+@media (max-width: 991px) {
+
+  .marquee-section {
+    margin-top: -45px;
+  }
+
+  .marquee-container {
+    min-height: 70px;
+  }
+
+  .marquee-heading {
+    padding: 0 22px;
+
+    border-right-width: 3px;
+  }
+
+  .marquee-heading span {
+    font-size: 17px;
+  }
+
+  .marquee-text {
+    padding: 0 50px;
+
+    font-size: 17px;
+  }
+
+  .marquee-track {
+    animation-duration: 12s;
+  }
+}
+
+/* =========================================================
+   SMALL TABLET
+   768px
+========================================================= */
+
+@media (max-width: 767px) {
+
+  .marquee-section {
+    margin-top: -35px;
+  }
+
+  .marquee-container {
+    min-height: 65px;
+  }
+
+  .marquee-heading {
+    padding: 0 18px;
+
+    border-right-width: 3px;
+  }
+
+  .marquee-heading span {
+    font-size: 16px;
+  }
+
+  .marquee-text {
+    padding: 0 40px;
+
+    font-size: 16px;
+  }
+
+  .marquee-track {
+    animation-duration: 10s;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   640px
+========================================================= */
+
+@media (max-width: 640px) {
+
+  .marquee-section {
+    margin-top: -25px;
+  }
+
+  .marquee-container {
+    min-height: 60px;
+  }
+
+  .marquee-heading {
+    padding: 0 14px;
+
+    border-right-width: 2px;
+  }
+
+  .marquee-heading span {
+    font-size: 14px;
+  }
+
+  .marquee-text {
+    padding: 0 30px;
+
+    font-size: 15px;
+  }
+
+  .marquee-track {
+    animation-duration: 9s;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   480px
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .marquee-section {
+    margin-top: -20px;
+  }
+
+  .marquee-container {
+    min-height: 55px;
+  }
+
+  .marquee-heading {
+    padding: 0 12px;
+
+    border-right-width: 2px;
+  }
+
+  .marquee-heading span {
+    font-size: 13px;
+  }
+
+  .marquee-text {
+    padding: 0 25px;
+
+    font-size: 14px;
+  }
+
+  .marquee-track {
+    animation-duration: 8s;
+  }
+}
+
+/* =========================================================
+   VERY SMALL MOBILE
+   360px
+========================================================= */
+
+@media (max-width: 360px) {
+
+  .marquee-section {
+    margin-top: -15px;
+  }
+
+  .marquee-container {
+    min-height: 52px;
+  }
+
+  .marquee-heading {
+    padding: 0 10px;
+  }
+
+  .marquee-heading span {
+    font-size: 12px;
+  }
+
+  .marquee-text {
+    padding: 0 20px;
+
+    font-size: 13px;
+  }
+
+  .marquee-track {
+    animation-duration: 7s;
+  }
+}
+
+/* =========================================================
+   REDUCE MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .marquee-track {
+    animation: none;
+  }
+}

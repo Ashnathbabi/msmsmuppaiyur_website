@@ -1,0 +1,7 @@
+.Activity_wrapper .service1-boxarea:hover h5 {
+  color: #fff !important;
+}
+
+.Activity_wrapper .service1-boxarea:hover h5::after {
+  background: #fff !important;
+}

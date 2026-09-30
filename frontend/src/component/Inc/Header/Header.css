@@ -1,0 +1,1192 @@
+@import url("https://fonts.googleapis.com/css2?family=Pathway+Extreme:wght@400;500;600;700&display=swap");
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+.font-pathway {
+  font-family: "Pathway Extreme", sans-serif;
+}
+
+.z-10 {
+  z-index: 26;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.main-header-style2 {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 99;
+}
+
+
+/* =========================================================
+   LOGO AREA
+========================================================= */
+
+.main-header-style2__logo-box {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 20;
+}
+
+.logo-box-style2 {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 300px;
+  height: 90px;
+}
+
+.logo-box-style2::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  right: -180px;
+  bottom: 0;
+
+  background: linear-gradient(
+    90deg,
+    #2e0797 0%,
+    #2d3381 100%
+  );
+
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    85% 100%,
+    0 100%
+  );
+
+  z-index: -1;
+}
+
+.logo-box-style2 img {
+  display: block;
+
+  width: auto;
+  height: auto;
+
+  max-width: 100%;
+  object-fit: contain;
+}
+
+
+/* =========================================================
+   HEADER CONTENT
+========================================================= */
+
+.main-header-style2__content {
+  width: 100%;
+}
+
+
+/* =========================================================
+   TOP BAR
+========================================================= */
+
+.main-header-style2__top {
+  width: 100%;
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 20px;
+
+  background-color: #f7f4f3;
+}
+
+.main-header-style2__top-left {
+  padding-left: 190px;
+}
+
+.main-header-style2__top-left p {
+  margin: 0;
+
+  font-size: 17px;
+  line-height: 30px;
+
+  color: #5e5b5a;
+}
+
+.main-header-style2__top-left a {
+  color: inherit;
+
+  text-decoration: none;
+
+  transition: color 0.2s ease;
+}
+
+.main-header-style2__top-left a:hover {
+  color: #e71b93;
+}
+
+
+/* =========================================================
+   SOCIAL LINKS
+========================================================= */
+
+.main-header-style2__top-right {
+  padding-right: 60px;
+}
+
+.main-header-style2__top-right > div {
+  position: relative;
+
+  display: block;
+
+  padding-left: 35px;
+
+  margin-right: 40px;
+}
+
+.main-header-style2__top-right ul {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.main-header-style2__top-right li {
+  position: relative;
+
+  display: block;
+
+  padding-right: 30px;
+}
+
+.main-header-style2__top-right li:last-child {
+  padding-right: 0;
+}
+
+.main-header-style2__top-right a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #1a2b3f;
+
+  text-decoration: none;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.main-header-style2__top-right a:hover {
+  color: #f6ac27;
+
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   BOTTOM HEADER
+========================================================= */
+
+.main-header-style2__bottom {
+  position: relative;
+
+  width: 100%;
+
+  padding-right: 60px;
+}
+
+.main-header-style2__bottom-inner {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: auto;
+
+  min-height: 70px;
+
+  margin-left: 18px;
+
+  background: #fff;
+
+  border-radius: 4px;
+
+  box-shadow:
+    0 0 30px 0 rgba(0, 0, 0, 0.12);
+}
+
+
+/* =========================================================
+   LEFT MENU AREA
+========================================================= */
+
+.main-header-style2__bottom-left {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  flex: 1;
+
+  min-width: 0;
+  min-height: 70px;
+
+  border-radius: 4px;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   WHITE DECORATIVE LINES
+========================================================= */
+
+.header-white-line {
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+
+  width: 4px;
+
+  background-color: #fff;
+
+  border-radius: 4px;
+
+  z-index: 20;
+
+  pointer-events: none;
+}
+
+.header-white-line-left {
+  left: 9px;
+}
+
+/* .header-white-line-right {
+  right: 9px;
+} */
+
+
+/* =========================================================
+   DESKTOP NAVIGATION
+========================================================= */
+
+.main-header-style2__bottom-left nav {
+  display: block;
+
+  width: 100%;
+  min-width: 0;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+   /* margin-left: 70px; */
+
+}
+
+.main-header-style2__bottom-left nav::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* =========================================================
+   MENU UL
+========================================================= */
+
+.main-header-style2__bottom-left nav ul {
+  display: flex;
+  align-items: center;
+
+  width: max-content;
+  min-width: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+
+  flex-wrap: nowrap;
+}
+
+
+/* =========================================================
+   MENU LI
+========================================================= */
+
+.main-header-style2__bottom-left nav li {
+  position: relative;
+
+  flex: 0 0 auto;
+}
+
+
+/* =========================================================
+   MENU LINKS
+========================================================= */
+
+.main-header-style2__bottom-left nav li a {
+  display: block;
+
+  padding: 15px 19px;
+
+  font-family: "Pathway Extreme", sans-serif;
+
+  font-size: 15px;
+  font-weight: 800;
+
+  line-height: 28px;
+
+  color: #1a2b3f;
+
+  text-decoration: none;
+  text-transform: capitalize;
+
+  white-space: nowrap;
+
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.main-header-style2__bottom-left nav li a:hover {
+  color: #e71b93;
+}
+
+
+/* =========================================================
+   PHONE AREA
+========================================================= */
+
+.main-header-style2__bottom-right {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  flex: 0 0 auto;
+
+  padding-right: 18px;
+}
+
+
+/* =========================================================
+   PHONE YELLOW LINES
+========================================================= */
+
+.header-yellow-line {
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+
+  width: 4px;
+
+  background-color: #f6ac27;
+
+  border-radius: 4px;
+
+  z-index: 5;
+
+  pointer-events: none;
+}
+
+.header-yellow-line-left {
+  right: 0;
+}
+
+.header-yellow-line-right {
+  right: 9px;
+}
+
+
+/* =========================================================
+   PHONE BOX
+========================================================= */
+
+.main-header-style2__bottom-right > div:last-child {
+  position: relative;
+
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+
+  padding: 17px 30px;
+
+  background: linear-gradient(
+    90deg,
+    #2e0797 0%,
+    #2d3381 100%
+  );
+}
+
+
+/* =========================================================
+   PHONE ICON
+========================================================= */
+
+.main-header-style2__bottom-right .rounded-full {
+  flex-shrink: 0;
+
+  width: 45px;
+  height: 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #fff;
+
+  color: #f6ac27;
+
+  border-radius: 50%;
+}
+
+
+/* =========================================================
+   PHONE TEXT
+========================================================= */
+
+.main-header-style2__bottom-right .ml-\[15px\] {
+  margin-left: 15px;
+}
+
+.main-header-style2__bottom-right p {
+  margin: 0 0 3px;
+
+  font-size: 16px;
+  line-height: 16px;
+
+  color: #fff;
+}
+
+.main-header-style2__bottom-right a {
+  font-family: "Pathway Extreme", sans-serif;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  line-height: 18px;
+
+  color: #fff;
+
+  text-decoration: none;
+
+  white-space: nowrap;
+
+  transition: color 0.2s ease;
+}
+
+.main-header-style2__bottom-right a:hover {
+  color: #f6ac27;
+}
+
+
+/* =========================================================
+   MOBILE TOGGLE
+========================================================= */
+
+.mobile-menu-toggle {
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  margin-left: auto;
+  margin-right: 15px;
+
+  padding: 0;
+
+  border: 0;
+  outline: none;
+
+  background: transparent;
+
+  color: #1a2b3f;
+
+  cursor: pointer;
+
+  z-index: 1001;
+}
+
+.mobile-menu-toggle:hover {
+  color: #e71b93;
+}
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+.mobile-menu {
+  display: none;
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+   1200px - 1399px
+========================================================= */
+
+@media (max-width: 1399px) {
+
+  .main-header-style2__top-left {
+    padding-left: 170px;
+  }
+
+  .main-header-style2__top-right {
+    padding-right: 40px;
+  }
+
+  .main-header-style2__bottom {
+    padding-right: 40px;
+  }
+
+  .main-header-style2__bottom-inner {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  .main-header-style2__bottom-left nav li a {
+    padding-left: 16px;
+    padding-right: 16px;
+
+    font-size: 15px;
+  }
+
+  .main-header-style2__bottom-right {
+    padding-right: 14px;
+  }
+
+  .main-header-style2__bottom-right > div:last-child {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .main-header-style2__bottom-right a {
+    font-size: 15px;
+  }
+}
+
+
+/* =========================================================
+   TABLET LANDSCAPE
+   992px - 1199px
+========================================================= */
+
+@media (max-width: 1199px) {
+
+  .main-header-style2__top-left {
+    padding-left: 150px;
+  }
+
+  .main-header-style2__top-left p {
+    font-size: 14px;
+  }
+
+  .main-header-style2__top-right {
+    padding-right: 20px;
+  }
+
+  .main-header-style2__top-right > div {
+    padding-left: 15px;
+
+    margin-right: 15px;
+  }
+
+  .main-header-style2__top-right li {
+    padding-right: 15px;
+  }
+
+
+  /* Bottom */
+
+  .main-header-style2__bottom {
+    padding-right: 20px;
+  }
+
+  .main-header-style2__bottom-inner {
+    margin-left: 10px;
+    margin-right: 10px;
+
+    min-height: 65px;
+  }
+
+  .main-header-style2__bottom-left {
+    min-height: 65px;
+  }
+
+
+  /* Menu */
+
+  .main-header-style2__bottom-left nav {
+    overflow-x: auto;
+  }
+
+  .main-header-style2__bottom-left nav ul {
+    width: max-content;
+    min-width: max-content;
+  }
+
+  .main-header-style2__bottom-left nav li a {
+    padding-left: 11px;
+    padding-right: 11px;
+
+    font-size: 13px;
+
+    line-height: 24px;
+  }
+
+
+  /* Phone */
+
+  .main-header-style2__bottom-right {
+    padding-right: 10px;
+  }
+
+  .main-header-style2__bottom-right > div:last-child {
+    padding: 10px 14px;
+  }
+
+  .main-header-style2__bottom-right .rounded-full {
+    width: 38px;
+    height: 38px;
+  }
+
+  .main-header-style2__bottom-right p {
+    font-size: 12px;
+  }
+
+  .main-header-style2__bottom-right a {
+    font-size: 12px;
+  }
+
+  .main-header-style2__bottom-right .ml-\[15px\] {
+    margin-left: 10px;
+  }
+}
+
+
+/* =========================================================
+   TABLET
+   768px - 991px
+========================================================= */
+
+@media (max-width: 991px) and (min-width: 768px) {
+
+  /* -------------------------------------------------------
+     HEADER
+  ------------------------------------------------------- */
+
+  .main-header-style2 {
+    padding-left: 0;
+  }
+
+
+  /* -------------------------------------------------------
+     LOGO
+  ------------------------------------------------------- */
+
+  .logo-box-style2 {
+    width: 250px;
+    height: 80px;
+  }
+
+  .logo-box-style2::before {
+    right: -130px;
+  }
+
+  .logo-box-style2 img {
+    max-width: 180px;
+    max-height: 60px;
+  }
+
+
+  /* -------------------------------------------------------
+     TOP BAR
+  ------------------------------------------------------- */
+
+  .main-header-style2__top {
+    height: 45px;
+  }
+
+  .main-header-style2__top-left {
+    padding-left: 120px;
+  }
+
+  .main-header-style2__top-left p {
+    font-size: 13px;
+  }
+
+  .main-header-style2__top-right {
+    padding-right: 15px;
+  }
+
+
+  /* -------------------------------------------------------
+     BOTTOM HEADER
+  ------------------------------------------------------- */
+
+  .main-header-style2__bottom {
+    padding-right: 10px;
+  }
+
+  .main-header-style2__bottom-inner {
+    width: calc(100% - 20px);
+
+    margin: 10px;
+
+    min-height: 60px;
+  }
+
+  .main-header-style2__bottom-left {
+    width: 100%;
+
+    min-height: 60px;
+
+    flex: 1;
+
+    min-width: 0;
+  }
+
+
+  /* -------------------------------------------------------
+     IMPORTANT:
+     HIDE CALL US ON TABLET
+  ------------------------------------------------------- */
+
+  .main-header-style2__bottom-right {
+    display: none !important;
+  }
+
+
+  /* -------------------------------------------------------
+     MENU FULL WIDTH
+  ------------------------------------------------------- */
+
+  .main-header-style2__bottom-left nav {
+    display: block !important;
+
+    width: 100%;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+   
+
+  }
+
+  .main-header-style2__bottom-left nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .main-header-style2__bottom-left nav ul {
+    display: flex;
+
+    width: max-content;
+    min-width: max-content;
+
+    flex-wrap: nowrap;
+  }
+
+  .main-header-style2__bottom-left nav li {
+    flex: 0 0 auto;
+  }
+
+  .main-header-style2__bottom-left nav li a {
+    padding: 11px 14px;
+
+    font-size: 14px;
+
+    line-height: 24px;
+
+    white-space: nowrap;
+  }
+
+
+  /* -------------------------------------------------------
+     NO HAMBURGER ON TABLET
+  ------------------------------------------------------- */
+
+  .mobile-menu-toggle {
+    display: none !important;
+  }
+
+
+  /* -------------------------------------------------------
+     DECORATIVE LINES
+  ------------------------------------------------------- */
+
+  .header-white-line,
+  .header-yellow-line {
+    display: none;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   767px AND BELOW
+========================================================= */
+
+@media (max-width: 767px) {
+
+  /* -------------------------------------------------------
+     HEADER
+  ------------------------------------------------------- */
+
+  .main-header-style2 {
+    padding-left: 0;
+  }
+
+
+  /* -------------------------------------------------------
+     LOGO
+  ------------------------------------------------------- */
+
+  .main-header-style2__logo-box {
+    width: auto;
+  }
+
+  .logo-box-style2 {
+    width: 220px;
+    height: 70px;
+
+    justify-content: center;
+  }
+
+  .logo-box-style2::before {
+    right: -80px;
+
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      82% 100%,
+      0 100%
+    );
+  }
+
+  /* .logo-box-style2 img {
+    max-width: 155px;
+    max-height: 52px;
+  } */
+
+
+  /* -------------------------------------------------------
+     TOP BAR
+  ------------------------------------------------------- */
+
+  .main-header-style2__top {
+    display: none !important;
+  }
+
+
+  /* -------------------------------------------------------
+     BOTTOM
+  ------------------------------------------------------- */
+
+  .main-header-style2__bottom {
+    width: 100%;
+
+    padding-right: 0;
+  }
+
+  .main-header-style2__bottom-inner {
+    width: 100%;
+
+    min-height: 65px;
+
+    margin: 0;
+
+    border-radius: 0;
+
+    box-shadow: none;
+    background: transparent ;
+  }
+
+  .main-header-style2__bottom-left {
+    width: 100%;
+
+    min-height: 65px;
+
+    flex: 1;
+
+    min-width: 0;
+
+    overflow: visible;
+  }
+
+
+  /* -------------------------------------------------------
+     HIDE DESKTOP NAV
+  ------------------------------------------------------- */
+
+  .main-header-style2__bottom-left nav {
+    display: none !important;
+  }
+
+
+  /* -------------------------------------------------------
+     SHOW MOBILE BUTTON
+  ------------------------------------------------------- */
+
+  .mobile-menu-toggle {
+    display: flex !important;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;
+    height: 44px;
+
+    margin-left: auto;
+    margin-right: 15px;
+
+    padding: 0;
+
+    border: 0;
+    outline: none;
+
+    background: transparent;
+
+    color: #1a2b3f;
+
+    cursor: pointer;
+
+    z-index: 1001;
+  }
+
+
+  /* -------------------------------------------------------
+     HIDE PHONE
+  ------------------------------------------------------- */
+
+  .main-header-style2__bottom-right {
+    display: none !important;
+  }
+
+
+  /* -------------------------------------------------------
+     DECORATIVE LINES
+  ------------------------------------------------------- */
+
+  .header-white-line,
+  .header-yellow-line {
+    display: none !important;
+  }
+
+
+  /* -------------------------------------------------------
+     MOBILE MENU
+  ------------------------------------------------------- */
+
+  .mobile-menu {
+    position: absolute;
+
+    top: 65px;
+
+    left: 0;
+    right: 0;
+
+    width: 100%;
+
+    display: block;
+
+    padding: 8px 0;
+
+    background: #fff;
+
+    border-radius: 0 0 5px 5px;
+
+    box-shadow:
+      0 10px 30px rgba(0, 0, 0, 0.15);
+
+    z-index: 1000;
+  }
+
+  .mobile-menu ul {
+    display: block;
+
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+  }
+
+  .mobile-menu li {
+    display: block;
+
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    border-bottom: 1px solid #eeeeee;
+  }
+
+  .mobile-menu li:last-child {
+    border-bottom: none;
+  }
+
+  .mobile-menu li a {
+    display: block;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 13px 20px;
+
+    font-family: "Pathway Extreme", sans-serif;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    line-height: 22px;
+
+    color: #1a2b3f;
+
+    text-decoration: none;
+
+    transition:
+      color 0.2s ease,
+      background-color 0.2s ease;
+  }
+
+  .mobile-menu li a:hover {
+    color: #e71b93;
+
+    background-color: #fafafa;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   480px AND BELOW
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .logo-box-style2 {
+    width: 190px;
+    height: 65px;
+  }
+
+  .logo-box-style2::before {
+    right: -65px;
+  }
+
+  .logo-box-style2 img {
+    max-width: 135px;
+    max-height: 48px;
+  }
+
+  .main-header-style2__bottom-inner {
+    min-height: 60px;
+  }
+
+  .main-header-style2__bottom-left {
+    min-height: 60px;
+  }
+
+  .mobile-menu {
+    top: 60px;
+  }
+
+  .mobile-menu li a {
+    padding: 12px 18px;
+
+    font-size: 15px;
+  }
+
+  .mobile-menu-toggle {
+    width: 42px;
+    height: 42px;
+
+    margin-right: 12px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   360px AND BELOW
+========================================================= */
+
+@media (max-width: 360px) {
+
+  .logo-box-style2 {
+    width: 175px;
+  }
+
+  .logo-box-style2 img {
+    max-width: 120px;
+  }
+
+  .mobile-menu-toggle {
+    width: 40px;
+    height: 40px;
+
+    margin-right: 10px;
+  }
+
+  .mobile-menu li a {
+    padding: 11px 16px;
+
+    font-size: 14px;
+  }
+}
+
+
+/* =========================================================
+   TOUCH DEVICES
+========================================================= */
+
+@media (hover: none) {
+
+  .main-header-style2__bottom-left nav li a:hover {
+    color: #1a2b3f;
+  }
+
+  .main-header-style2__top-right a:hover {
+    color: #1a2b3f;
+
+    transform: none;
+  }
+
+  .mobile-menu-toggle:hover {
+    color: #1a2b3f;
+  }
+}
+.enroll-box-style1 .text:before {
+      content: "";
+    position: absolute;
+    left: 89px;
+    bottom: 9px;
+    right: 23px;
+    height: 2px;
+    border-bottom: 2px dashed #fff;
+}

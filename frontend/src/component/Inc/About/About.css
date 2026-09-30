@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap");
+
+/* =====================================================
+   FONT
+===================================================== */
+
+.font-figtree {
+  font-family: "Figtree", sans-serif;
+}
+
+/* =====================================================
+   IMAGE REVEAL
+===================================================== */
+
+.image-reveal {
+  position: relative;
+}
+
+.image-reveal::after {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 0%;
+  left: 50%;
+  top: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%) rotate(-45deg);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* =====================================================
+   EXPERIENCE CARD ANIMATION
+===================================================== */
+
+@keyframes aboutFloating {
+  0% {
+    transform: translate(-50%, 0);
+  }
+
+  100% {
+    transform: translate(-50%, 18px);
+  }
+}
+
+.animate-floating {
+  animation: aboutFloating 3s ease-in-out infinite alternate;
+}
+
+/* =====================================================
+   SMALL SCREEN
+===================================================== */
+
+@media (max-width: 639px) {
+  .animate-floating {
+    animation: aboutFloating 3s ease-in-out infinite alternate;
+  }
+}
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .animate-floating {
+    animation-duration: 3.2s;
+  }
+}
+.heading_abt {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* =====================================================
+   LARGE DESKTOP
+===================================================== */
+
+@media (min-width: 1280px) {
+  .animate-floating {
+    animation-duration: 3.5s;
+  }
+}

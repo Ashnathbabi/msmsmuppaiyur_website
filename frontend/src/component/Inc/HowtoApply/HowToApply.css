@@ -1,0 +1,416 @@
+
+
+/* =====================================================
+   HOW TO APPLY ROTATING ELEMENT
+===================================================== */
+
+@keyframes howToApplyRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-1000deg);
+  }
+}
+
+.keyframe5 {
+  animation-name: howToApplyRotate;
+  animation-duration: 90s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: cubic-bezier(0.59, 0.59, 1, 1);
+}
+.Howtoapply_wrapper h2{
+    color:#fff;
+}
+/* =====================================================
+   FACILITIES IMAGE HOVER EFFECT
+===================================================== */
+
+.image-anime {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-anime::after {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 0%;
+  left: 50%;
+  top: 50%;
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%) rotate(-45deg);
+  z-index: 1;
+  transition: height 600ms linear;
+}
+
+.image-anime:hover::after {
+  height: 250%;
+  transition: all 600ms linear;
+  background-color: transparent;
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 767px) {
+
+  .Howtoapply_wrapper {
+    padding-top: 70px !important;
+    padding-bottom: 250px !important;
+  }
+
+  .Howtoapply_wrapper h2 {
+    font-size: 32px !important;
+    line-height: 40px !important;
+  }
+
+  .Howtoapply_wrapper h5 {
+    font-size: 15px !important;
+  }
+
+  .Howtoapply_wrapper > img {
+    display: none;
+  }
+
+  .case1-section-area {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+}
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+  .Howtoapply_wrapper h2 {
+    font-size: 38px !important;
+    line-height: 44px !important;
+  }
+}
+/* =========================================================
+   HOW TO APPLY
+========================================================= */
+
+.apply-card-group {
+  position: relative;
+}
+
+.apply-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 155px;
+  padding: 28px;
+  background: #f2f4ff;
+  border-radius: 4px;
+  text-align: center;
+  z-index: 2;
+  transition: all 0.5s ease;
+}
+
+/* Hover background */
+.apply-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    90deg,
+    #2e0797,
+    #2d3381
+  );
+  border-radius: 8px;
+  opacity: 0;
+  z-index: -1;
+  transition: all 0.5s ease;
+}
+
+.apply-card-group:hover .apply-card::after {
+  width: 100%;
+  left: 0;
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.apply-card h3 {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  color: #050734;
+  font-family: "Figtree", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 26px;
+  transition: color 0.5s ease;
+}
+
+.apply-card p {
+  position: relative;
+  z-index: 2;
+  margin: 14px 0 0;
+  color: #050734;
+  font-family: "Figtree", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 26px;
+  opacity: 0.8;
+  transition: color 0.5s ease;
+}
+
+.apply-card-group:hover .apply-card h3,
+.apply-card-group:hover .apply-card p {
+  color: #fff;
+}
+
+
+/* =========================================================
+   NUMBER CIRCLE
+========================================================= */
+
+.apply-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 60px;
+  height: 60px;
+
+  border-radius: 50%;
+
+  background: linear-gradient(
+    90deg,
+    #2e0797,
+    #726efc
+  );
+
+  color: #fff;
+
+  font-family: "Figtree", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+
+  transition: all 0.5s ease;
+}
+
+.apply-card-group:hover .apply-number {
+  transform: rotate(360deg);
+}
+
+
+/* =========================================================
+   CONNECTOR LINES
+========================================================= */
+
+.connector {
+  position: absolute;
+  width: 150px;
+  height: 95px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.connector::before,
+.connector::after {
+  content: "";
+  position: absolute;
+  background: #c8c8d2;
+}
+
+
+/* horizontal */
+.connector::before {
+  height: 1.5px;
+  width: 100%;
+}
+
+
+/* vertical */
+.connector::after {
+  width: 1.5px;
+  height: 65px;
+}
+
+
+/* =========================================================
+   LEFT TOP
+========================================================= */
+
+.connector-left-top {
+  right: -110px;
+  top: -65px;
+}
+
+.connector-left-top::before {
+  top: 0;
+  left: 0;
+}
+
+.connector-left-top::after {
+  top: 0;
+  right: 0;
+}
+
+.connector-left-top span {
+  position: absolute;
+  right: -7px;
+  top: 58px;
+
+  width: 17px;
+  height: 17px;
+
+  border: 2px solid #1769ff;
+  border-radius: 50%;
+
+  background: #fff;
+}
+
+
+/* =========================================================
+   LEFT BOTTOM
+========================================================= */
+
+.connector-left-bottom {
+  right: -110px;
+  bottom: -65px;
+}
+
+.connector-left-bottom::before {
+  bottom: 0;
+  left: 0;
+}
+
+.connector-left-bottom::after {
+  bottom: 0;
+  right: 0;
+}
+
+.connector-left-bottom span {
+  position: absolute;
+  right: -7px;
+  bottom: 58px;
+
+  width: 17px;
+  height: 17px;
+
+  border: 2px solid #1769ff;
+  border-radius: 50%;
+
+  background: #fff;
+}
+
+
+/* =========================================================
+   RIGHT TOP
+========================================================= */
+
+.connector-right-top {
+  left: -110px;
+  top: -65px;
+}
+
+.connector-right-top::before {
+  top: 0;
+  right: 0;
+}
+
+.connector-right-top::after {
+  top: 0;
+  left: 0;
+}
+
+.connector-right-top span {
+  position: absolute;
+  left: -7px;
+  top: 58px;
+
+  width: 17px;
+  height: 17px;
+
+  border: 2px solid #1769ff;
+  border-radius: 50%;
+
+  background: #fff;
+}
+
+
+/* =========================================================
+   RIGHT BOTTOM
+========================================================= */
+
+.connector-right-bottom {
+  left: -110px;
+  bottom: -65px;
+}
+
+.connector-right-bottom::before {
+  bottom: 0;
+  right: 0;
+}
+
+.connector-right-bottom::after {
+  bottom: 0;
+  left: 0;
+}
+
+.connector-right-bottom span {
+  position: absolute;
+  left: -7px;
+  bottom: 58px;
+
+  width: 17px;
+  height: 17px;
+
+  border: 2px solid #1769ff;
+  border-radius: 50%;
+
+  background: #fff;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1024px) {
+
+  .connector {
+    display: none;
+  }
+
+  .apply-number {
+    width: 55px;
+    height: 55px;
+    font-size: 21px;
+  }
+
+  
+}
+
+
+@media (max-width: 767px) {
+
+  .apply-card-group {
+    margin-bottom: 25px;
+  }
+
+  .apply-number {
+    position: relative;
+    top: 0 !important;
+    right: auto !important;
+    left: auto !important;
+    bottom: auto !important;
+
+    margin: 0 auto -25px;
+  }
+
+  .apply-card {
+    padding-top: 40px;
+  }
+}

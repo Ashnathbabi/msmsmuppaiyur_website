@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+}
+
+/* ================= HERO SWIPER ================= */
+
+.heroSwiper {
+  width: 100%;
+  height: 100%;
+}
+
+/* Prevent Swiper default arrows */
+.heroSwiper .swiper-button-prev,
+.heroSwiper .swiper-button-next {
+  display: none;
+}
+
+/* ================= PAGINATION ================= */
+
+.heroSwiper .swiper-pagination {
+  bottom: 25px !important;
+  z-index: 40 !important;
+}
+
+.heroSwiper .swiper-pagination-bullet {
+  width: 9px;
+  height: 9px;
+  margin: 0 5px !important;
+
+  background: #ffffff;
+  opacity: 0.6;
+
+  transition: all 0.3s ease;
+}
+
+.heroSwiper .swiper-pagination-bullet-active {
+  width: 28px;
+  border-radius: 10px;
+
+  background: #facc15;
+  opacity: 1;
+}
+
+/* ================= CUSTOM ARROWS ================= */
+
+.heroSwiper + .hero-prev,
+.heroSwiper + .hero-next {
+  pointer-events: auto;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+  .heroSwiper .swiper-pagination {
+    bottom: 15px !important;
+  }
+}
