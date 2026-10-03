@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import {
   Plus,
   ImagePlus,
@@ -14,9 +13,7 @@ import {
 // API CONFIG
 // =====================================================
 
-const API_BASE_URL = (
-  import.meta.env.VITE_API_URL || ""
-)
+const API_BASE_URL = (import.meta.env.VITE_API_URL || "")
   .replace(/\/api\/?$/, "")
   .replace(/\/$/, "");
 
@@ -37,7 +34,6 @@ const GalleryAdmin = () => {
 
   const [years, setYears] = useState([]);
   const [events, setEvents] = useState([]);
-
   const [generalImages, setGeneralImages] = useState([]);
   const [galleryImages, setGalleryImages] = useState([]);
 
@@ -48,13 +44,13 @@ const GalleryAdmin = () => {
   const [loadingYears, setLoadingYears] = useState(false);
   const [loadingEvents, setLoadingEvents] = useState(false);
   const [loadingImages, setLoadingImages] = useState(false);
-  const [loadingGeneralImages, setLoadingGeneralImages] =
-    useState(false);
+  const [loadingGeneralImages, setLoadingGeneralImages] = useState(false);
 
   // Saving
   const [savingYear, setSavingYear] = useState(false);
   const [savingEvent, setSavingEvent] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [deletingEvent, setDeletingEvent] = useState(null);
 
   // Error
   const [error, setError] = useState("");
@@ -84,9 +80,7 @@ const GalleryAdmin = () => {
   // =====================================================
 
   const getResponseData = async (response) => {
-    const contentType =
-      response.headers.get("content-type") || "";
-
+    const contentType = response.headers.get("content-type") || "";
     const responseText = await response.text();
 
     if (!contentType.includes("application/json")) {
@@ -109,13 +103,9 @@ const GalleryAdmin = () => {
     let data = {};
 
     try {
-      data = responseText
-        ? JSON.parse(responseText)
-        : {};
+      data = responseText ? JSON.parse(responseText) : {};
     } catch {
-      throw new Error(
-        "Server returned invalid JSON response."
-      );
+      throw new Error("Server returned invalid JSON response.");
     }
 
     if (!response.ok) {
@@ -183,15 +173,16 @@ const GalleryAdmin = () => {
       // Automatically select first year
       if (data.years?.length > 0) {
         setSelectedYear(data.years[0]);
+      } else {
+        setSelectedYear(null);
       }
     } catch (error) {
       console.error("Load years error:", error);
 
       setYears([]);
+      setSelectedYear(null);
 
-      setError(
-        error.message || "Failed to load academic years"
-      );
+      setError(error.message || "Failed to load academic years");
     } finally {
       setLoadingYears(false);
     }
@@ -211,9 +202,7 @@ const GalleryAdmin = () => {
       setLoadingEvents(true);
       setError("");
 
-      const url = apiUrl(
-        `/api/years/${yearId}/events`
-      );
+      const url = apiUrl(`/api/years/${yearId}/events`);
 
       console.log("Loading events:", url);
 
@@ -240,9 +229,7 @@ const GalleryAdmin = () => {
       setSelectedEvent(null);
       setGalleryImages([]);
 
-      setError(
-        error.message || "Failed to load events"
-      );
+      setError(error.message || "Failed to load events");
     } finally {
       setLoadingEvents(false);
     }
@@ -256,14 +243,9 @@ const GalleryAdmin = () => {
     try {
       setLoadingGeneralImages(true);
 
-      const url = apiUrl(
-        `/api/general-images?_=${Date.now()}`
-      );
+      const url = apiUrl(`/api/general-images?_=${Date.now()}`);
 
-      console.log(
-        "Loading general images:",
-        url
-      );
+      console.log("Loading general images:", url);
 
       const response = await fetch(url, {
         method: "GET",
@@ -275,24 +257,15 @@ const GalleryAdmin = () => {
 
       const data = await getResponseData(response);
 
-      console.log(
-        "General gallery response:",
-        data
-      );
+      console.log("General gallery response:", data);
 
       setGeneralImages(data.images || []);
     } catch (error) {
-      console.error(
-        "Load general images error:",
-        error
-      );
+      console.error("Load general images error:", error);
 
       setGeneralImages([]);
 
-      setError(
-        error.message ||
-          "Failed to load general images"
-      );
+      setError(error.message || "Failed to load general images");
     } finally {
       setLoadingGeneralImages(false);
     }
@@ -312,14 +285,9 @@ const GalleryAdmin = () => {
       setLoadingImages(true);
       setError("");
 
-      const url = apiUrl(
-        `/api/events/${eventId}/images?_=${Date.now()}`
-      );
+      const url = apiUrl(`/api/events/${eventId}/images?_=${Date.now()}`);
 
-      console.log(
-        "Loading event images:",
-        url
-      );
+      console.log("Loading event images:", url);
 
       const response = await fetch(url, {
         method: "GET",
@@ -331,24 +299,15 @@ const GalleryAdmin = () => {
 
       const data = await getResponseData(response);
 
-      console.log(
-        "Event images response:",
-        data
-      );
+      console.log("Event images response:", data);
 
       setGalleryImages(data.images || []);
     } catch (error) {
-      console.error(
-        "Load event images error:",
-        error
-      );
+      console.error("Load event images error:", error);
 
       setGalleryImages([]);
 
-      setError(
-        error.message ||
-          "Failed to load event images"
-      );
+      setError(error.message || "Failed to load event images");
     } finally {
       setLoadingImages(false);
     }
@@ -407,43 +366,30 @@ const GalleryAdmin = () => {
       setSavingYear(true);
       setError("");
 
-      const response = await fetch(
-        apiUrl("/api/admin/years"),
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify({
-            year_name: yearName.trim(),
-            is_active: 1,
-          }),
-        }
-      );
+      const response = await fetch(apiUrl("/api/admin/years"), {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          year_name: yearName.trim(),
+          is_active: 1,
+        }),
+      });
 
-      const data =
-        await getResponseData(response);
+      const data = await getResponseData(response);
 
-      console.log(
-        "Create year response:",
-        data
-      );
+      console.log("Create year response:", data);
 
       setYearName("");
       setShowYearModal(false);
 
       await loadYears();
     } catch (error) {
-      console.error(
-        "Create year error:",
-        error
-      );
+      console.error("Create year error:", error);
 
-      setError(
-        error.message ||
-          "Failed to create year."
-      );
+      setError(error.message || "Failed to create year.");
     } finally {
       setSavingYear(false);
     }
@@ -454,23 +400,17 @@ const GalleryAdmin = () => {
   // =====================================================
 
   const toggleYearStatus = async (year) => {
-    const newStatus =
-      Number(year.is_active) === 1
-        ? 0
-        : 1;
+    const newStatus = Number(year.is_active) === 1 ? 0 : 1;
 
     try {
       setError("");
 
       const response = await fetch(
-        apiUrl(
-          `/api/admin/years/${year.id}/status`
-        ),
+        apiUrl(`/api/admin/years/${year.id}/status`),
         {
           method: "PUT",
           headers: {
-            "Content-Type":
-              "application/json",
+            "Content-Type": "application/json",
             Accept: "application/json",
           },
           body: JSON.stringify({
@@ -483,8 +423,7 @@ const GalleryAdmin = () => {
 
       setYears((prev) =>
         prev.map((item) =>
-          Number(item.id) ===
-          Number(year.id)
+          Number(item.id) === Number(year.id)
             ? {
                 ...item,
                 is_active: newStatus,
@@ -493,10 +432,7 @@ const GalleryAdmin = () => {
         )
       );
 
-      if (
-        Number(selectedYear?.id) ===
-        Number(year.id)
-      ) {
+      if (Number(selectedYear?.id) === Number(year.id)) {
         setSelectedYear((prev) =>
           prev
             ? {
@@ -507,15 +443,9 @@ const GalleryAdmin = () => {
         );
       }
     } catch (error) {
-      console.error(
-        "Toggle year error:",
-        error
-      );
+      console.error("Toggle year error:", error);
 
-      setError(
-        error.message ||
-          "Failed to update year."
-      );
+      setError(error.message || "Failed to update year.");
     }
   };
 
@@ -540,47 +470,31 @@ const GalleryAdmin = () => {
       setSavingEvent(true);
       setError("");
 
-      const response = await fetch(
-        apiUrl("/api/admin/events"),
-        {
-          method: "POST",
-          headers: {
-            "Content-Type":
-              "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify({
-            academic_year_id:
-              selectedYear.id,
-            event_name:
-              eventName.trim(),
-            is_active: 1,
-          }),
-        }
-      );
+      const response = await fetch(apiUrl("/api/admin/events"), {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          academic_year_id: selectedYear.id,
+          event_name: eventName.trim(),
+          is_active: 1,
+        }),
+      });
 
-      const data =
-        await getResponseData(response);
+      const data = await getResponseData(response);
 
-      console.log(
-        "Create event response:",
-        data
-      );
+      console.log("Create event response:", data);
 
       setEventName("");
       setShowEventModal(false);
 
       await loadEvents(selectedYear.id);
     } catch (error) {
-      console.error(
-        "Create event error:",
-        error
-      );
+      console.error("Create event error:", error);
 
-      setError(
-        error.message ||
-          "Failed to create event."
-      );
+      setError(error.message || "Failed to create event.");
     } finally {
       setSavingEvent(false);
     }
@@ -591,23 +505,17 @@ const GalleryAdmin = () => {
   // =====================================================
 
   const toggleEventStatus = async (event) => {
-    const newStatus =
-      Number(event.is_active) === 1
-        ? 0
-        : 1;
+    const newStatus = Number(event.is_active) === 1 ? 0 : 1;
 
     try {
       setError("");
 
       const response = await fetch(
-        apiUrl(
-          `/api/admin/events/${event.id}/status`
-        ),
+        apiUrl(`/api/admin/events/${event.id}/status`),
         {
           method: "PUT",
           headers: {
-            "Content-Type":
-              "application/json",
+            "Content-Type": "application/json",
             Accept: "application/json",
           },
           body: JSON.stringify({
@@ -620,8 +528,7 @@ const GalleryAdmin = () => {
 
       setEvents((prev) =>
         prev.map((item) =>
-          Number(item.id) ===
-          Number(event.id)
+          Number(item.id) === Number(event.id)
             ? {
                 ...item,
                 is_active: newStatus,
@@ -630,10 +537,7 @@ const GalleryAdmin = () => {
         )
       );
 
-      if (
-        Number(selectedEvent?.id) ===
-        Number(event.id)
-      ) {
+      if (Number(selectedEvent?.id) === Number(event.id)) {
         setSelectedEvent((prev) =>
           prev
             ? {
@@ -644,15 +548,71 @@ const GalleryAdmin = () => {
         );
       }
     } catch (error) {
-      console.error(
-        "Toggle event error:",
-        error
+      console.error("Toggle event error:", error);
+
+      setError(error.message || "Failed to update event.");
+    }
+  };
+
+  // =====================================================
+  // DELETE EVENT
+  // =====================================================
+
+  const deleteEvent = async (event) => {
+    if (!event?.id) {
+      setError("Invalid event.");
+      return;
+    }
+
+    const confirmed = window.confirm(
+      `Are you sure you want to delete "${event.event_name}"?\n\nThe event record will be deleted.`
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    try {
+      setDeletingEvent(event.id);
+      setError("");
+
+      const response = await fetch(
+        apiUrl(`/api/admin/events/${event.id}`),
+        {
+          method: "DELETE",
+          headers: {
+            Accept: "application/json",
+          },
+        }
       );
 
-      setError(
-        error.message ||
-          "Failed to update event."
+      const data = await getResponseData(response);
+
+      console.log("Delete event response:", data);
+
+      // Remove event from UI
+      setEvents((prev) =>
+        prev.filter(
+          (item) => Number(item.id) !== Number(event.id)
+        )
       );
+
+      // If deleted event was selected, clear gallery
+      if (
+        selectedEvent &&
+        Number(selectedEvent.id) === Number(event.id)
+      ) {
+        setSelectedEvent(null);
+        setGalleryImages([]);
+      }
+
+      setError("");
+    } catch (error) {
+      console.error("Delete event error:", error);
+
+      setError(error.message || "Failed to delete event.");
+    } finally {
+      setDeletingEvent(null);
     }
   };
 
@@ -661,9 +621,7 @@ const GalleryAdmin = () => {
   // =====================================================
 
   const handleFileChange = (e) => {
-    const files = Array.from(
-      e.target.files || []
-    );
+    const files = Array.from(e.target.files || []);
 
     const validTypes = [
       "image/jpeg",
@@ -673,8 +631,7 @@ const GalleryAdmin = () => {
       "image/gif",
     ];
 
-    const maxSize =
-      10 * 1024 * 1024;
+    const maxSize = 10 * 1024 * 1024;
 
     let validFiles = files.filter(
       (file) =>
@@ -695,30 +652,19 @@ const GalleryAdmin = () => {
 
         setSelectedFiles([]);
         e.target.value = "";
+
         return;
       }
 
-      if (
-        validFiles.length >
-        remainingSlots
-      ) {
-        validFiles =
-          validFiles.slice(
-            0,
-            remainingSlots
-          );
+      if (validFiles.length > remainingSlots) {
+        validFiles = validFiles.slice(0, remainingSlots);
 
         setError(
           `Only ${remainingSlots} more image${
-            remainingSlots > 1
-              ? "s"
-              : ""
+            remainingSlots > 1 ? "s" : ""
           } can be uploaded. Maximum is 4.`
         );
-      } else if (
-        validFiles.length !==
-        files.length
-      ) {
+      } else if (validFiles.length !== files.length) {
         setError(
           "Only JPG, JPEG, PNG, WEBP and GIF images up to 10MB are allowed."
         );
@@ -726,10 +672,7 @@ const GalleryAdmin = () => {
         setError("");
       }
     } else {
-      if (
-        validFiles.length !==
-        files.length
-      ) {
+      if (validFiles.length !== files.length) {
         setError(
           "Some files were skipped. Only JPG, JPEG, PNG, WEBP and GIF images up to 10MB are allowed."
         );
@@ -761,13 +704,10 @@ const GalleryAdmin = () => {
 
     if (uploadMode === "general") {
       const totalAfterUpload =
-        generalImages.length +
-        selectedFiles.length;
+        generalImages.length + selectedFiles.length;
 
       if (totalAfterUpload > 4) {
-        setError(
-          "Main gallery can contain maximum 4 images."
-        );
+        setError("Main gallery can contain maximum 4 images.");
         return;
       }
 
@@ -775,54 +715,35 @@ const GalleryAdmin = () => {
         setUploading(true);
         setError("");
 
-        const formData =
-          new FormData();
+        const formData = new FormData();
 
-        formData.append(
-          "gallery_type",
-          "inner"
-        );
+        formData.append("gallery_type", "inner");
 
         selectedFiles.forEach((file) => {
-          formData.append(
-            "images",
-            file
-          );
+          formData.append("images", file);
         });
 
         const response = await fetch(
-          apiUrl(
-            "/api/admin/upload"
-          ),
+          apiUrl("/api/admin/upload"),
           {
             method: "POST",
             body: formData,
           }
         );
 
-        const data =
-          await getResponseData(
-            response
-          );
+        const data = await getResponseData(response);
 
-        console.log(
-          "General upload response:",
-          data
-        );
+        console.log("General upload response:", data);
 
         setSelectedFiles([]);
         setShowUploadModal(false);
 
         await loadGeneralImages();
       } catch (error) {
-        console.error(
-          "General upload error:",
-          error
-        );
+        console.error("General upload error:", error);
 
         setError(
-          error.message ||
-            "General image upload failed."
+          error.message || "General image upload failed."
         );
       } finally {
         setUploading(false);
@@ -836,16 +757,12 @@ const GalleryAdmin = () => {
     // ===================================================
 
     if (!selectedYear?.id) {
-      setError(
-        "Please select a year."
-      );
+      setError("Please select a year.");
       return;
     }
 
     if (!selectedEvent?.id) {
-      setError(
-        "Please select an event."
-      );
+      setError("Please select an event.");
       return;
     }
 
@@ -853,13 +770,9 @@ const GalleryAdmin = () => {
       setUploading(true);
       setError("");
 
-      const formData =
-        new FormData();
+      const formData = new FormData();
 
-      formData.append(
-        "gallery_type",
-        "inner"
-      );
+      formData.append("gallery_type", "inner");
 
       formData.append(
         "academic_year_id",
@@ -872,47 +785,30 @@ const GalleryAdmin = () => {
       );
 
       selectedFiles.forEach((file) => {
-        formData.append(
-          "images",
-          file
-        );
+        formData.append("images", file);
       });
 
       const response = await fetch(
-        apiUrl(
-          "/api/admin/upload"
-        ),
+        apiUrl("/api/admin/upload"),
         {
           method: "POST",
           body: formData,
         }
       );
 
-      const data =
-        await getResponseData(
-          response
-        );
+      const data = await getResponseData(response);
 
-      console.log(
-        "Event upload response:",
-        data
-      );
+      console.log("Event upload response:", data);
 
       setSelectedFiles([]);
       setShowUploadModal(false);
 
-      await loadImages(
-        selectedEvent.id
-      );
+      await loadImages(selectedEvent.id);
     } catch (error) {
-      console.error(
-        "Event upload error:",
-        error
-      );
+      console.error("Event upload error:", error);
 
       setError(
-        error.message ||
-          "Event image upload failed."
+        error.message || "Event image upload failed."
       );
     } finally {
       setUploading(false);
@@ -923,14 +819,10 @@ const GalleryAdmin = () => {
   // DELETE IMAGE
   // =====================================================
 
-  const deleteImage = async (
-    image,
-    type
-  ) => {
-    const confirmed =
-      window.confirm(
-        "Are you sure you want to delete this image?"
-      );
+  const deleteImage = async (image, type) => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this image?"
+    );
 
     if (!confirmed) {
       return;
@@ -940,9 +832,7 @@ const GalleryAdmin = () => {
       setError("");
 
       const response = await fetch(
-        apiUrl(
-          `/api/admin/images/${image.id}`
-        ),
+        apiUrl(`/api/admin/images/${image.id}`),
         {
           method: "DELETE",
           headers: {
@@ -957,28 +847,22 @@ const GalleryAdmin = () => {
         setGeneralImages((prev) =>
           prev.filter(
             (item) =>
-              Number(item.id) !==
-              Number(image.id)
+              Number(item.id) !== Number(image.id)
           )
         );
       } else {
         setGalleryImages((prev) =>
           prev.filter(
             (item) =>
-              Number(item.id) !==
-              Number(image.id)
+              Number(item.id) !== Number(image.id)
           )
         );
       }
     } catch (error) {
-      console.error(
-        "Delete image error:",
-        error
-      );
+      console.error("Delete image error:", error);
 
       setError(
-        error.message ||
-          "Failed to delete image."
+        error.message || "Failed to delete image."
       );
     }
   };
@@ -989,9 +873,7 @@ const GalleryAdmin = () => {
 
   const openGeneralUpload = () => {
     if (generalImages.length >= 4) {
-      setError(
-        "Main gallery already has 4 images."
-      );
+      setError("Main gallery already has 4 images.");
       return;
     }
 
@@ -1007,9 +889,7 @@ const GalleryAdmin = () => {
 
   const openEventUpload = () => {
     if (!selectedEvent?.id) {
-      setError(
-        "Please select an event first."
-      );
+      setError("Please select an event first.");
       return;
     }
 
@@ -1066,8 +946,7 @@ const GalleryAdmin = () => {
               alt={imageAlt}
               className="h-full w-full object-cover"
               onError={(e) => {
-                e.currentTarget.style.display =
-                  "none";
+                e.currentTarget.style.display = "none";
               }}
             />
           ) : (
@@ -1084,12 +963,7 @@ const GalleryAdmin = () => {
 
           <button
             type="button"
-            onClick={() =>
-              deleteImage(
-                image,
-                type
-              )
-            }
+            onClick={() => deleteImage(image, type)}
             className="flex w-full items-center justify-center gap-2 rounded-lg bg-red-50 px-3 py-2 text-xs font-bold text-red-600 transition hover:bg-red-100"
           >
             <Trash2 size={15} />
@@ -1106,38 +980,32 @@ const GalleryAdmin = () => {
 
   return (
     <div className="min-h-screen bg-[#f5f6fa] p-4 sm:p-6 lg:p-8">
-
       {/* =================================================
           HEADER
       ================================================= */}
 
       <div className="mb-6 rounded-2xl bg-white p-5 shadow-sm">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-
           <div>
             <h1 className="text-2xl font-bold text-[#050734]">
               Gallery Management
             </h1>
 
             <p className="mt-1 text-sm text-gray-500">
-              Manage main gallery images,
-              academic years, events and
-              event gallery images.
+              Manage main gallery images, academic years,
+              events and event gallery images.
             </p>
           </div>
 
           <button
             type="button"
             onClick={openGeneralUpload}
-            disabled={
-              generalImages.length >= 4
-            }
+            disabled={generalImages.length >= 4}
             className="inline-flex items-center justify-center gap-2 rounded-full bg-[#e71b93] px-5 py-3 text-sm font-bold text-white transition hover:bg-black disabled:cursor-not-allowed disabled:opacity-40"
           >
             <Upload size={18} />
             Upload Main Images
           </button>
-
         </div>
       </div>
 
@@ -1164,15 +1032,12 @@ const GalleryAdmin = () => {
       ================================================= */}
 
       <div className="grid grid-cols-1 gap-6 xl:grid-cols-[280px_330px_minmax(0,1fr)]">
-
         {/* =================================================
             LEFT - YEARS
         ================================================= */}
 
         <div className="rounded-2xl bg-white p-5 shadow-sm">
-
           <div className="mb-5 flex items-center justify-between">
-
             <h2 className="text-lg font-bold text-[#050734]">
               Academic Years
             </h2>
@@ -1188,7 +1053,6 @@ const GalleryAdmin = () => {
             >
               <Plus size={18} />
             </button>
-
           </div>
 
           {loadingYears ? (
@@ -1201,19 +1065,12 @@ const GalleryAdmin = () => {
             </div>
           ) : (
             <div className="space-y-3">
-
               {years.map((year) => {
-
                 const active =
-                  Number(
-                    selectedYear?.id
-                  ) ===
-                  Number(year.id);
+                  Number(selectedYear?.id) === Number(year.id);
 
                 const isEnabled =
-                  Number(
-                    year.is_active
-                  ) === 1;
+                  Number(year.is_active) === 1;
 
                 return (
                   <div
@@ -1224,7 +1081,6 @@ const GalleryAdmin = () => {
                         : "border-gray-200"
                     }`}
                   >
-
                     <button
                       type="button"
                       onClick={() => {
@@ -1234,9 +1090,7 @@ const GalleryAdmin = () => {
                       }}
                       className="w-full text-left"
                     >
-
                       <div className="flex items-center justify-between gap-2">
-
                         <span className="font-bold text-gray-800">
                           {year.year_name}
                         </span>
@@ -1248,20 +1102,14 @@ const GalleryAdmin = () => {
                               : "bg-gray-100 text-gray-500"
                           }`}
                         >
-                          {isEnabled
-                            ? "Active"
-                            : "Inactive"}
+                          {isEnabled ? "Active" : "Inactive"}
                         </span>
-
                       </div>
-
                     </button>
 
                     <button
                       type="button"
-                      onClick={() =>
-                        toggleYearStatus(year)
-                      }
+                      onClick={() => toggleYearStatus(year)}
                       className={`mt-3 flex w-full items-center justify-center gap-2 rounded-lg px-3 py-2 text-xs font-bold ${
                         isEnabled
                           ? "bg-red-50 text-red-600 hover:bg-red-100"
@@ -1270,18 +1118,13 @@ const GalleryAdmin = () => {
                     >
                       <Power size={14} />
 
-                      {isEnabled
-                        ? "Disable"
-                        : "Enable"}
+                      {isEnabled ? "Disable" : "Enable"}
                     </button>
-
                   </div>
                 );
               })}
-
             </div>
           )}
-
         </div>
 
         {/* =================================================
@@ -1289,9 +1132,7 @@ const GalleryAdmin = () => {
         ================================================= */}
 
         <div className="rounded-2xl bg-white p-5 shadow-sm">
-
           <div className="mb-5 flex items-center justify-between">
-
             <div>
               <h2 className="text-lg font-bold text-[#050734]">
                 Events
@@ -1316,7 +1157,6 @@ const GalleryAdmin = () => {
             >
               <Plus size={18} />
             </button>
-
           </div>
 
           {!selectedYear ? (
@@ -1333,19 +1173,15 @@ const GalleryAdmin = () => {
             </div>
           ) : (
             <div className="space-y-3">
-
               {events.map((event) => {
-
                 const active =
-                  Number(
-                    selectedEvent?.id
-                  ) ===
-                  Number(event.id);
+                  Number(selectedEvent?.id) === Number(event.id);
 
                 const isEnabled =
-                  Number(
-                    event.is_active
-                  ) === 1;
+                  Number(event.is_active) === 1;
+
+                const isDeleting =
+                  Number(deletingEvent) === Number(event.id);
 
                 return (
                   <div
@@ -1356,17 +1192,19 @@ const GalleryAdmin = () => {
                         : "border-gray-200"
                     }`}
                   >
+                    {/* Event Selection */}
 
                     <button
                       type="button"
-                      onClick={() =>
-                        setSelectedEvent(event)
-                      }
-                      className="w-full text-left"
+                      onClick={() => {
+                        if (!isDeleting) {
+                          setSelectedEvent(event);
+                        }
+                      }}
+                      disabled={isDeleting}
+                      className="w-full text-left disabled:cursor-not-allowed"
                     >
-
                       <div className="flex items-start justify-between gap-2">
-
                         <span className="font-semibold text-gray-800">
                           {event.event_name}
                         </span>
@@ -1378,17 +1216,16 @@ const GalleryAdmin = () => {
                               : "bg-gray-100 text-gray-500"
                           }`}
                         >
-                          {isEnabled
-                            ? "Active"
-                            : "Inactive"}
+                          {isEnabled ? "Active" : "Inactive"}
                         </span>
-
                       </div>
-
                     </button>
+
+                    {/* Enable / Disable */}
 
                     <button
                       type="button"
+                      disabled={isDeleting}
                       onClick={() =>
                         toggleEventStatus(event)
                       }
@@ -1396,7 +1233,7 @@ const GalleryAdmin = () => {
                         isEnabled
                           ? "bg-red-50 text-red-600 hover:bg-red-100"
                           : "bg-green-50 text-green-600 hover:bg-green-100"
-                      }`}
+                      } disabled:cursor-not-allowed disabled:opacity-50`}
                     >
                       <Power size={14} />
 
@@ -1405,13 +1242,25 @@ const GalleryAdmin = () => {
                         : "Enable Event"}
                     </button>
 
+                    {/* Delete Event */}
+
+                    <button
+                      type="button"
+                      disabled={isDeleting}
+                      onClick={() => deleteEvent(event)}
+                      className="mt-2 flex w-full items-center justify-center gap-2 rounded-lg bg-red-50 px-3 py-2 text-xs font-bold text-red-600 transition hover:bg-red-100 disabled:cursor-not-allowed disabled:opacity-50"
+                    >
+                      <Trash2 size={14} />
+
+                      {isDeleting
+                        ? "Deleting..."
+                        : "Delete Event"}
+                    </button>
                   </div>
                 );
               })}
-
             </div>
           )}
-
         </div>
 
         {/* =================================================
@@ -1419,16 +1268,13 @@ const GalleryAdmin = () => {
         ================================================= */}
 
         <div className="rounded-2xl bg-white p-5 shadow-sm">
-
           {/* =================================================
               MAIN GALLERY
           ================================================= */}
 
           {!selectedEvent && (
             <div>
-
               <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-
                 <div>
                   <h2 className="flex items-center gap-2 text-lg font-bold text-[#050734]">
                     <Images size={20} />
@@ -1444,15 +1290,12 @@ const GalleryAdmin = () => {
                 <button
                   type="button"
                   onClick={openGeneralUpload}
-                  disabled={
-                    generalImages.length >= 4
-                  }
+                  disabled={generalImages.length >= 4}
                   className="inline-flex items-center justify-center gap-2 rounded-full bg-[#e71b93] px-4 py-2.5 text-sm font-bold text-white hover:bg-black disabled:cursor-not-allowed disabled:opacity-40"
                 >
                   <Upload size={17} />
                   Upload
                 </button>
-
               </div>
 
               {loadingGeneralImages ? (
@@ -1461,7 +1304,6 @@ const GalleryAdmin = () => {
                 </div>
               ) : generalImages.length === 0 ? (
                 <div className="flex min-h-[300px] flex-col items-center justify-center rounded-2xl border-2 border-dashed border-gray-200 bg-gray-50 text-center">
-
                   <ImagePlus
                     size={50}
                     className="mb-4 text-[#e71b93]"
@@ -1483,11 +1325,9 @@ const GalleryAdmin = () => {
                     <Upload size={17} />
                     Upload Images
                   </button>
-
                 </div>
               ) : (
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-
                   {generalImages.map((image) =>
                     renderImageCard(
                       image,
@@ -1495,10 +1335,8 @@ const GalleryAdmin = () => {
                       "general"
                     )
                   )}
-
                 </div>
               )}
-
             </div>
           )}
 
@@ -1508,9 +1346,7 @@ const GalleryAdmin = () => {
 
           {selectedEvent && (
             <div>
-
               <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-
                 <div>
                   <h2 className="flex items-center gap-2 text-lg font-bold text-[#050734]">
                     <Images size={20} />
@@ -1532,7 +1368,6 @@ const GalleryAdmin = () => {
                   <Upload size={17} />
                   Upload Images
                 </button>
-
               </div>
 
               {loadingImages ? (
@@ -1541,7 +1376,6 @@ const GalleryAdmin = () => {
                 </div>
               ) : galleryImages.length === 0 ? (
                 <div className="flex min-h-[350px] flex-col items-center justify-center rounded-2xl border-2 border-dashed border-gray-200 bg-gray-50">
-
                   <ImagePlus
                     size={45}
                     className="mb-3 text-gray-300"
@@ -1563,11 +1397,9 @@ const GalleryAdmin = () => {
                     <Upload size={17} />
                     Upload Images
                   </button>
-
                 </div>
               ) : (
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 2xl:grid-cols-3">
-
                   {galleryImages.map((image) =>
                     renderImageCard(
                       image,
@@ -1575,13 +1407,10 @@ const GalleryAdmin = () => {
                       "event"
                     )
                   )}
-
                 </div>
               )}
-
             </div>
           )}
-
         </div>
       </div>
 
@@ -1592,38 +1421,27 @@ const GalleryAdmin = () => {
       {showYearModal && (
         <div
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4"
-          onClick={() =>
-            setShowYearModal(false)
-          }
+          onClick={() => setShowYearModal(false)}
         >
-
           <div
             className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl"
-            onClick={(e) =>
-              e.stopPropagation()
-            }
+            onClick={(e) => e.stopPropagation()}
           >
-
             <div className="mb-5 flex items-center justify-between">
-
               <h3 className="text-xl font-bold text-[#050734]">
                 Add Academic Year
               </h3>
 
               <button
                 type="button"
-                onClick={() =>
-                  setShowYearModal(false)
-                }
+                onClick={() => setShowYearModal(false)}
                 className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 hover:bg-black hover:text-white"
               >
                 <X size={18} />
               </button>
-
             </div>
 
             <form onSubmit={createYear}>
-
               <label className="mb-2 block text-sm font-semibold text-gray-700">
                 Academic Year
               </label>
@@ -1632,9 +1450,7 @@ const GalleryAdmin = () => {
                 type="text"
                 value={yearName}
                 onChange={(e) =>
-                  setYearName(
-                    e.target.value
-                  )
+                  setYearName(e.target.value)
                 }
                 placeholder="Example: 2027 - 2028"
                 autoFocus
@@ -1644,8 +1460,7 @@ const GalleryAdmin = () => {
               <button
                 type="submit"
                 disabled={
-                  savingYear ||
-                  !yearName.trim()
+                  savingYear || !yearName.trim()
                 }
                 className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-[#e71b93] px-5 py-3 font-bold text-white hover:bg-black disabled:opacity-50"
               >
@@ -1655,9 +1470,7 @@ const GalleryAdmin = () => {
                   ? "Saving..."
                   : "Create Year"}
               </button>
-
             </form>
-
           </div>
         </div>
       )}
@@ -1669,49 +1482,35 @@ const GalleryAdmin = () => {
       {showEventModal && (
         <div
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4"
-          onClick={() =>
-            setShowEventModal(false)
-          }
+          onClick={() => setShowEventModal(false)}
         >
-
           <div
             className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl"
-            onClick={(e) =>
-              e.stopPropagation()
-            }
+            onClick={(e) => e.stopPropagation()}
           >
-
             <div className="mb-5 flex items-center justify-between">
-
               <div>
-
                 <h3 className="text-xl font-bold text-[#050734]">
                   Add Event
                 </h3>
 
                 {selectedYear && (
                   <p className="mt-1 text-xs text-gray-500">
-                    Year:{" "}
-                    {selectedYear.year_name}
+                    Year: {selectedYear.year_name}
                   </p>
                 )}
-
               </div>
 
               <button
                 type="button"
-                onClick={() =>
-                  setShowEventModal(false)
-                }
+                onClick={() => setShowEventModal(false)}
                 className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 hover:bg-black hover:text-white"
               >
                 <X size={18} />
               </button>
-
             </div>
 
             <form onSubmit={createEvent}>
-
               <label className="mb-2 block text-sm font-semibold text-gray-700">
                 Event Name
               </label>
@@ -1720,9 +1519,7 @@ const GalleryAdmin = () => {
                 type="text"
                 value={eventName}
                 onChange={(e) =>
-                  setEventName(
-                    e.target.value
-                  )
+                  setEventName(e.target.value)
                 }
                 placeholder="Example: Annual Day"
                 autoFocus
@@ -1732,8 +1529,7 @@ const GalleryAdmin = () => {
               <button
                 type="submit"
                 disabled={
-                  savingEvent ||
-                  !eventName.trim()
+                  savingEvent || !eventName.trim()
                 }
                 className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-[#e71b93] px-5 py-3 font-bold text-white hover:bg-black disabled:opacity-50"
               >
@@ -1743,9 +1539,7 @@ const GalleryAdmin = () => {
                   ? "Saving..."
                   : "Create Event"}
               </button>
-
             </form>
-
           </div>
         </div>
       )}
@@ -1759,18 +1553,12 @@ const GalleryAdmin = () => {
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4"
           onClick={closeUploadModal}
         >
-
           <div
             className="w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl"
-            onClick={(e) =>
-              e.stopPropagation()
-            }
+            onClick={(e) => e.stopPropagation()}
           >
-
             <div className="mb-5 flex items-center justify-between">
-
               <div>
-
                 <h3 className="text-xl font-bold text-[#050734]">
                   {uploadMode === "event"
                     ? "Upload Event Images"
@@ -1784,7 +1572,6 @@ const GalleryAdmin = () => {
                       }`
                     : "Separate gallery images - no year/event required"}
                 </p>
-
               </div>
 
               <button
@@ -1794,13 +1581,10 @@ const GalleryAdmin = () => {
               >
                 <X size={18} />
               </button>
-
             </div>
 
             <form onSubmit={uploadImages}>
-
               <label className="flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-gray-300 bg-gray-50 p-10 text-center transition hover:border-[#e71b93]">
-
                 <ImagePlus
                   size={45}
                   className="mb-3 text-[#e71b93]"
@@ -1821,8 +1605,7 @@ const GalleryAdmin = () => {
                 {uploadMode === "general" && (
                   <>
                     <span className="mt-2 text-xs font-bold text-[#e71b93]">
-                      {generalImages.length}/4
-                      images used
+                      {generalImages.length}/4 images used
                     </span>
 
                     <span className="mt-1 text-xs text-gray-400">
@@ -1838,49 +1621,37 @@ const GalleryAdmin = () => {
                   onChange={handleFileChange}
                   className="hidden"
                 />
-
               </label>
 
               {/* Selected Files */}
 
               {selectedFiles.length > 0 && (
                 <div className="mt-4 rounded-xl bg-gray-50 p-4">
-
                   <p className="mb-3 text-sm font-bold text-gray-700">
-                    {selectedFiles.length}{" "}
-                    image
-                    {selectedFiles.length > 1
-                      ? "s"
-                      : ""}{" "}
-                    selected
+                    {selectedFiles.length} image
+                    {selectedFiles.length > 1 ? "s" : ""} selected
                   </p>
 
                   <div className="max-h-40 space-y-2 overflow-y-auto">
+                    {selectedFiles.map((file, index) => (
+                      <div
+                        key={`${file.name}-${index}`}
+                        className="flex items-center justify-between rounded-lg bg-white px-3 py-2"
+                      >
+                        <span className="max-w-[80%] truncate text-xs text-gray-600">
+                          {file.name}
+                        </span>
 
-                    {selectedFiles.map(
-                      (file, index) => (
-                        <div
-                          key={`${file.name}-${index}`}
-                          className="flex items-center justify-between rounded-lg bg-white px-3 py-2"
-                        >
-
-                          <span className="max-w-[80%] truncate text-xs text-gray-600">
-                            {file.name}
-                          </span>
-
-                          <span className="text-[10px] text-gray-400">
-                            {(
-                              file.size /
-                              1024 /
-                              1024
-                            ).toFixed(2)}{" "}
-                            MB
-                          </span>
-
-                        </div>
-                      )
-                    )}
-
+                        <span className="text-[10px] text-gray-400">
+                          {(
+                            file.size /
+                            1024 /
+                            1024
+                          ).toFixed(2)}{" "}
+                          MB
+                        </span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               )}
@@ -1901,9 +1672,7 @@ const GalleryAdmin = () => {
                       selectedFiles.length || ""
                     } Images`}
               </button>
-
             </form>
-
           </div>
         </div>
       )}

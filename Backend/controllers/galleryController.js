@@ -1,4 +1,3 @@
-
 const db = require("../config/db");
 const fs = require("fs");
 const path = require("path");
@@ -40,7 +39,6 @@ const getGeneralImages = async (req, res) => {
   }
 };
 
-
 // =====================================================
 // GET ACADEMIC YEARS
 // =====================================================
@@ -72,7 +70,6 @@ const getYears = async (req, res) => {
   }
 };
 
-
 // =====================================================
 // GET ADMIN ACADEMIC YEARS
 // =====================================================
@@ -103,7 +100,6 @@ const getAdminYears = async (req, res) => {
     });
   }
 };
-
 
 // =====================================================
 // GET EVENTS BY ACADEMIC YEAR
@@ -149,7 +145,6 @@ const getEventsByYear = async (req, res) => {
     });
   }
 };
-
 
 // =====================================================
 // GET EVENT IMAGES
@@ -198,7 +193,6 @@ const getEventImages = async (req, res) => {
     });
   }
 };
-
 
 // =====================================================
 // CREATE ACADEMIC YEAR
@@ -271,7 +265,6 @@ const createYear = async (req, res) => {
   }
 };
 
-
 // =====================================================
 // UPDATE ACADEMIC YEAR STATUS
 // =====================================================
@@ -315,7 +308,6 @@ const updateYearStatus = async (req, res) => {
   }
 };
 
-
 // =====================================================
 // CREATE EVENT
 // =====================================================
@@ -348,8 +340,6 @@ const createEvent = async (req, res) => {
 
     // =================================================
     // CHECK ACADEMIC YEAR
-    // IMPORTANT:
-    // Uses academic_years, not gallery_academic_years
     // =================================================
 
     const [yearRows] = await db.query(
@@ -433,7 +423,6 @@ const createEvent = async (req, res) => {
   }
 };
 
-
 // =====================================================
 // UPDATE EVENT STATUS
 // =====================================================
@@ -477,6 +466,85 @@ const updateEventStatus = async (req, res) => {
   }
 };
 
+// =====================================================
+// DELETE EVENT NAME ONLY
+// =====================================================
+// IMPORTANT:
+// This deletes ONLY the record from gallery_events.
+//
+// It DOES NOT:
+// - delete gallery_images records
+// - delete physical image files
+//
+// Existing event images remain in the database and uploads folder.
+// =====================================================
+
+const deleteEvent = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!id) {
+      return res.status(400).json({
+        success: false,
+        message: "Event ID is required",
+      });
+    }
+
+    // Check event exists
+    const [eventRows] = await db.query(
+      `
+      SELECT
+        id,
+        event_name
+      FROM gallery_events
+      WHERE id = ?
+      LIMIT 1
+      `,
+      [id]
+    );
+
+    if (eventRows.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "Event not found",
+      });
+    }
+
+    const eventName = eventRows[0].event_name;
+
+    // =================================================
+    // DELETE ONLY EVENT RECORD
+    // =================================================
+
+    const [result] = await db.query(
+      `
+      DELETE FROM gallery_events
+      WHERE id = ?
+      `,
+      [id]
+    );
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "Event not found",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: `Event "${eventName}" deleted successfully`,
+    });
+  } catch (error) {
+    console.error("deleteEvent error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Failed to delete event",
+      error: error.message,
+    });
+  }
+};
 
 // =====================================================
 // UPLOAD GALLERY IMAGES
@@ -652,7 +720,6 @@ const uploadGalleryImages = async (req, res) => {
   }
 };
 
-
 // =====================================================
 // DELETE GALLERY IMAGE
 // =====================================================
@@ -737,7 +804,6 @@ const deleteGalleryImage = async (req, res) => {
   }
 };
 
-
 // =====================================================
 // EXPORTS
 // =====================================================
@@ -748,10 +814,14 @@ module.exports = {
   getAdminYears,
   getEventsByYear,
   getEventImages,
+
   createYear,
   updateYearStatus,
+
   createEvent,
   updateEventStatus,
+  deleteEvent,
+
   uploadGalleryImages,
   deleteGalleryImage,
 };

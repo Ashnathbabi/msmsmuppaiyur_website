@@ -147,6 +147,13 @@ router.put(
   controller.updateEventStatus
 );
 
+// Delete event name ONLY
+// Event images will NOT be deleted
+router.delete(
+  "/admin/events/:id",
+  controller.deleteEvent
+);
+
 // =====================================================
 // ADMIN - GALLERY UPLOAD
 // =====================================================
