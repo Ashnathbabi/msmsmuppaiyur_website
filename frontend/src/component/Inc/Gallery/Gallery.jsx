@@ -1,33 +1,7 @@
+import { API_URL, getImageUrl } from "../../../config/api";
 import React, { useEffect, useState } from "react";
 import { Plus } from "lucide-react";
 import sublogo from "../../../assets/sub-logo1.png";
-
-const API_URL =
-  import.meta.env.VITE_API_URL ||
-  "/api";
-
-const IMAGE_URL =
-  import.meta.env.VITE_IMAGE_URL ||
-  "";
-
-// =====================================================
-// IMAGE URL
-// =====================================================
-
-const getImageUrl = (image) => {
-  if (!image) return "";
-
-  if (
-    image.startsWith("http://") ||
-    image.startsWith("https://")
-  ) {
-    return image;
-  }
-
-  return `${IMAGE_URL}${
-    image.startsWith("/") ? "" : "/"
-  }${image}`;
-};
 
 // =====================================================
 // GALLERY ITEM

@@ -1,3 +1,4 @@
+import { API_URL } from "../../../config/api";
 import React, { useEffect, useState } from "react";
 import {
   Phone,
@@ -9,8 +10,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 
-const API_URL =
-  import.meta.env.VITE_API_URL || "/api";
+
 
 const ContactUs = () => {
   const [contactInfo, setContactInfo] = useState({

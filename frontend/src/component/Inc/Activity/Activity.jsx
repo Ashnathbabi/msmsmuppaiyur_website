@@ -1,3 +1,4 @@
+import { API_URL, SERVER_URL } from "../../../config/api";
 
 import { useEffect, useState } from "react";
 import "./Activity.css";
@@ -5,11 +6,9 @@ import "./Activity.css";
 import servicebg from "../../../assets/activity/service-bg1.png";
 import sublogo from "../../../assets/sub-logo1.png";
 
-const API_URL =
-    import.meta.env.VITE_API_URL || "/api";
 
-const IMAGE_URL =
-    import.meta.env.VITE_IMAGE_URL || "";
+
+
 
 const HomeActivity = () => {
     const [activities, setActivities] = useState([]);
@@ -89,11 +88,11 @@ const HomeActivity = () => {
         // Database value:
         // uploads/activity/filename.png
         if (cleanImage.startsWith("uploads/")) {
-            imageUrl = `${IMAGE_URL}/${cleanImage}`;
+            imageUrl = `${SERVER_URL}/${cleanImage}`;
         } else {
             // Database value:
             // filename.png
-            imageUrl = `${IMAGE_URL}/uploads/activity/${cleanImage}`;
+            imageUrl = `${SERVER_URL}/uploads/activity/${cleanImage}`;
         }
 
         // Prevent browser cache after image update

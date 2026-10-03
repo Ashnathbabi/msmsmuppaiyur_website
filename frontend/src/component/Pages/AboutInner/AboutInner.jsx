@@ -1,3 +1,4 @@
+import { getImageUrl } from "../../../config/api";
 import React, { useEffect, useState } from "react";
 
 import { getAbout } from "../../../services/aboutService";
@@ -5,25 +6,9 @@ import { getAbout } from "../../../services/aboutService";
 
 import DefaultSubLogo from "../../../assets/sub-logo1.png";
 
-const API_ROOT =
-  import.meta.env.VITE_API_URL || "";
 
-const getImageUrl = (image) => {
-  if (!image) return "";
 
-  if (
-    image.startsWith("http://") ||
-    image.startsWith("https://")
-  ) {
-    return image;
-  }
 
-  if (image.startsWith("/")) {
-    return `${API_ROOT}${image}`;
-  }
-
-  return `${API_ROOT}/${image}`;
-};
 
 
 const AboutInner = () => {

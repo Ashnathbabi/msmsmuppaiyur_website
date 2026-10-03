@@ -1,3 +1,4 @@
+import { API_URL, getImageUrl } from "../../../config/api";
 import React, { useCallback, useEffect, useState } from "react";
 import { ArrowRight, X, ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -26,26 +27,6 @@ const Alumni = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
-  // =========================================================
-  // API BASE URL
-  // =========================================================
-
-  const API_BASE_URL = (() => {
-    const envUrl =
-      import.meta.env.VITE_API_URL || "";
-
-    const cleanUrl = envUrl.replace(/\/+$/, "");
-
-    return cleanUrl.endsWith("/api")
-      ? cleanUrl
-      : `${cleanUrl}/api`;
-  })();
-
-  // =========================================================
-  // SERVER BASE URL
-  // =========================================================
-
-  const SERVER_BASE_URL = API_BASE_URL.replace(/\/api$/, "");
 
   // =========================================================
   // API REQUEST
@@ -57,7 +38,7 @@ const Alumni = () => {
         ? endpoint
         : `/${endpoint}`;
 
-      const url = `${API_BASE_URL}${cleanEndpoint}`;
+      const url = `${API_URL}${cleanEndpoint}`;
 
       console.log("=================================");
       console.log("API REQUEST:", url);
@@ -114,7 +95,7 @@ const Alumni = () => {
 
       return data;
     },
-    [API_BASE_URL]
+    [API_URL]
   );
 
   // =========================================================
@@ -201,50 +182,7 @@ const Alumni = () => {
   // IMAGE URL HELPER
   // =========================================================
 
-  const getImageUrl = (image) => {
-    if (!image) return "";
-
-    // API returns direct string
-    if (typeof image === "string") {
-      if (
-        image.startsWith("http://") ||
-        image.startsWith("https://")
-      ) {
-        return image;
-      }
-
-      if (image.startsWith("/")) {
-        return `${SERVER_BASE_URL}${image}`;
-      }
-
-      return `${SERVER_BASE_URL}/${image}`;
-    }
-
-    // API returns object
-    const imagePath =
-      image.url ||
-      image.image_url ||
-      image.imageUrl ||
-      image.path ||
-      image.file ||
-      image.src ||
-      image.image;
-
-    if (!imagePath) return "";
-
-    if (
-      imagePath.startsWith("http://") ||
-      imagePath.startsWith("https://")
-    ) {
-      return imagePath;
-    }
-
-    if (imagePath.startsWith("/")) {
-      return `${SERVER_BASE_URL}${imagePath}`;
-    }
-
-    return `${SERVER_BASE_URL}/${imagePath}`;
-  };
+  
 
   // =========================================================
   // EXTRACT GALLERY IMAGES
@@ -1499,3 +1437,4 @@ const Alumni = () => {
 };
 
 export default Alumni;
+

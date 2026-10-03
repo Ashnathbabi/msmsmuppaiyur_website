@@ -1,3 +1,4 @@
+import { SERVER_URL } from "../../../config/api";
 import { useState } from "react";
 import { PhoneCall, Menu, X } from "lucide-react";
 import {
@@ -29,9 +30,7 @@ const Header = () => {
   // API / IMAGE URL
   // ==========================================================
 
-  const IMAGE_URL =
-    import.meta.env.VITE_IMAGE_URL ||
-    "";
+  
 
   // ==========================================================
   // HEADER SETTINGS
@@ -80,7 +79,7 @@ const Header = () => {
 
     // Database contains:
     // /uploads/header/logo-xxxx.png
-    return `${IMAGE_URL}${settings.logo}`;
+    return `${SERVER_URL}${settings.logo}`;
   };
 
   const logoUrl = getLogoUrl();

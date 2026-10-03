@@ -1,3 +1,4 @@
+import { API_URL, getImageUrl, SERVER_URL } from "../../../config/api";
 import React, {
   useEffect,
   useState
@@ -19,13 +20,8 @@ import emailIcon
   from "../../../assets/footer/email1.png";
 
 
-const API_URL =
-  import.meta.env.VITE_API_URL ||
-  "/api";
 
-const SERVER_URL =
-  import.meta.env.VITE_IMAGE_URL ||
-  "";
+
 
 
 /*
@@ -34,25 +30,7 @@ const SERVER_URL =
 |--------------------------------------------------------------------------
 */
 
-const getImageUrl = (image) => {
 
-  if (!image) {
-    return "";
-  }
-
-  if (
-    image.startsWith("http://") ||
-    image.startsWith("https://")
-  ) {
-    return image;
-  }
-
-  return `${SERVER_URL}${
-    image.startsWith("/")
-      ? image
-      : `/${image}`
-  }`;
-};
 
 
 /*

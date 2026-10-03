@@ -1,9 +1,7 @@
-const API_ROOT =
-  import.meta.env.VITE_API_URL || "";
+import { API_URL } from "../config/api";
 
-const API_URL = API_ROOT.endsWith("/api")
-  ? API_ROOT
-  : `${API_ROOT}/api`;
+
+
 
 
 // ==========================================

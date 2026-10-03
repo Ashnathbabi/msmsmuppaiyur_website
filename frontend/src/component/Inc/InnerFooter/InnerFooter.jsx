@@ -1,3 +1,4 @@
+import { API_URL, SERVER_URL } from "../../../config/api";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -9,13 +10,9 @@ import {
 
 // import FooterBg from "../../../assets/innerfooter/footer_bg.jpg";
 
-const API_URL =
-  import.meta.env.VITE_API_URL ||
-  "/api";
 
-const IMAGE_URL =
-  import.meta.env.VITE_IMAGE_URL ||
-  "";
+
+
 
 
 const InnerFooter = () => {
@@ -99,7 +96,7 @@ const InnerFooter = () => {
 
   const backgroundImage =
     settings.background_image
-      ? `${IMAGE_URL}${settings.background_image}`
+      ? `${SERVER_URL}${settings.background_image}`
       : FooterBg;
 
 
@@ -214,7 +211,7 @@ const InnerFooter = () => {
                 {settings.logo ? (
 
                   <img
-                    src={`${IMAGE_URL}${settings.logo}`}
+                    src={`${SERVER_URL}${settings.logo}`}
                     alt="School Logo"
                     className="
                       block

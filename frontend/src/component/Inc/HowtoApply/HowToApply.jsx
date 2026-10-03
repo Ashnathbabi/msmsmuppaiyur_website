@@ -1,3 +1,4 @@
+import { API_URL, SERVER_URL } from "../../../config/api";
 import React, { useEffect, useState } from "react";
 
 import "./HowToApply.css";
@@ -30,13 +31,9 @@ import sublogo
     from "../../../assets/sub-logo1.png";
 
 
-const API_URL =
-    import.meta.env.VITE_API_URL ||
-    "/api";
 
-const IMAGE_URL =
-    import.meta.env.VITE_IMAGE_URL ||
-    "";
+
+
 
 
 const HowToApply = () => {
@@ -578,7 +575,7 @@ const HowToApply = () => {
                                     <img
                                         src={
                                             settings?.center_image
-                                                ? `${IMAGE_URL}${settings.center_image}`
+                                                ? `${SERVER_URL}${settings.center_image}`
                                                 : Applynew
                                         }
                                         alt="How to Apply"
@@ -992,7 +989,7 @@ const HowToApply = () => {
                                             <img
                                                 src={
                                                     facility.image
-                                                        ? `${IMAGE_URL}${facility.image}`
+                                                        ? `${SERVER_URL}${facility.image}`
                                                         : "/placeholder.jpg"
                                                 }
                                                 alt={
