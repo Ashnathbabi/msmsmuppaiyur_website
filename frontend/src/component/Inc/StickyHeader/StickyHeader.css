@@ -1,6 +1,293 @@
-.sticky__nav {
-    padding-left:34px
+/* =========================================
+   STICKY HEADER
+========================================= */
+
+.sticky-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2222;
+    padding: 6px 0;
+    animation: fadeInDown 0.7s ease-in-out;
 }
-.sticky_applynow{
-    padding-right:34px;
+
+
+/* =========================================
+   CONTAINER
+========================================= */
+
+.sticky-header-container {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+
+/* =========================================
+   HEADER BOX
+========================================= */
+
+.sticky-header-box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    padding: 16px 28px;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+
+    background: linear-gradient(
+        90deg,
+        #2e0797,
+        #2d3381
+    );
+
+    backdrop-filter: blur(4px);
+}
+
+
+/* =========================================
+   NAV
+========================================= */
+
+.sticky__nav {
+    flex: 1;
+    min-width: 0;
+}
+
+.sticky-menu {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    gap: 32px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.sticky-menu::-webkit-scrollbar {
+    display: none;
+}
+
+
+.sticky-menu-item {
+    flex-shrink: 0;
+}
+
+
+.sticky-menu-link {
+    position: relative;
+
+    display: inline-block;
+
+    white-space: nowrap;
+
+    font-family: "Figtree", sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    transition: all 0.3s ease;
+}
+
+.sticky-menu-link:hover {
+    color: #e71b93;
+}
+
+
+/* =========================================
+   UNDERLINE
+========================================= */
+
+.sticky-menu-underline {
+    position: absolute;
+
+    left: 0;
+    bottom: -5px;
+
+    width: 0;
+    height: 2px;
+
+    background: #e71b93;
+
+    transition: width 0.3s ease;
+}
+
+.sticky-menu-link:hover .sticky-menu-underline {
+    width: 100%;
+}
+
+
+/* =========================================
+   APPLY BUTTON
+========================================= */
+
+.sticky_applynow {
+    flex-shrink: 0;
+    margin-left: 24px;
+}
+
+.sticky-apply-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 12px 20px;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #2e0797;
+
+    font-family: "Figtree", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: all 0.3s ease;
+}
+
+.sticky-apply-btn:hover {
+    background: #e71b93;
+    color: #ffffff;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 991px) {
+
+    .sticky-header-container {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .sticky-header-box {
+        padding: 13px 18px;
+    }
+
+    .sticky-menu {
+        gap: 22px;
+    }
+
+    .sticky-menu-link {
+        font-size: 15px;
+    }
+
+    .sticky-apply-btn {
+        padding: 10px 16px;
+        font-size: 15px;
+    }
+
+    .sticky_applynow {
+        margin-left: 15px;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 767px) {
+
+    .sticky-header {
+        padding: 5px 0;
+    }
+
+    .sticky-header-container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .sticky-header-box {
+        padding: 11px 12px;
+        border-radius: 12px;
+    }
+
+    .sticky__nav {
+        width: 100%;
+    }
+
+    .sticky-menu {
+        gap: 18px;
+        overflow-x: auto;
+        padding-right: 5px;
+    }
+
+    .sticky-menu-link {
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    .sticky-menu-underline {
+        bottom: -3px;
+    }
+
+    .sticky_applynow {
+        display: none;
+    }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    .sticky-header-container {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .sticky-header-box {
+        padding: 10px 10px;
+        border-radius: 10px;
+    }
+
+    .sticky-menu {
+        gap: 16px;
+    }
+
+    .sticky-menu-link {
+        font-size: 12px;
+    }
+}
+
+
+/* =========================================
+   ANIMATION
+========================================= */
+
+@keyframes fadeInDown {
+
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
