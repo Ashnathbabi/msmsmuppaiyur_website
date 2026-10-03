@@ -1,3 +1,4 @@
+import { API_URL, SERVER_URL } from "../../../config/api";
 import { useEffect, useRef, useState } from "react";
 
 import {
@@ -15,13 +16,9 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-const API_URL =
-  import.meta.env.VITE_API_URL ||
-  "/api";
 
-const IMAGE_URL =
-  import.meta.env.VITE_IMAGE_URL ||
-  "";
+
+
 
 function HeroBanner() {
   const prevRef = useRef(null);
@@ -180,7 +177,7 @@ function HeroBanner() {
                   >
                     {slide.image ? (
                       <img
-                        src={`${IMAGE_URL}${slide.image}`}
+                        src={`${SERVER_URL}${slide.image}`}
                         alt={
                           slide.title ||
                           "Hero Banner"

@@ -1,9 +1,9 @@
+import { API_URL, SERVER_URL } from "../../../config/api";
 import React, { useEffect, useRef, useState } from "react";
 import { CircleArrowRight } from "lucide-react";
 
-const API_URL = import.meta.env.VITE_API_URL || "/api";
-const IMAGE_URL =
-    import.meta.env.VITE_IMAGE_URL || "";
+
+
 
 
 // =====================================================
@@ -440,7 +440,7 @@ const WhyChoose = () => {
                                     <img
                                         src={
                                             activeContent.image
-                                                ? `${IMAGE_URL}${activeContent.image}`
+                                                ? `${SERVER_URL}${activeContent.image}`
                                                 : "/placeholder.jpg"
                                         }
                                         alt={

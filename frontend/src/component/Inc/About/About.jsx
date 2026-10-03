@@ -1,3 +1,4 @@
+import { API_URL, SERVER_URL } from "../../../config/api";
 import React, {
     useEffect,
     useState
@@ -13,13 +14,9 @@ import sublogo from "../../../assets/sub-logo1.png";
 import "./About.css";
 
 
-const API_URL =
-    import.meta.env.VITE_API_URL ||
-    "/api";
 
-const IMAGE_URL =
-    import.meta.env.VITE_IMAGE_URL ||
-    "";
+
+
 
 
 const AboutHomeSchool = () => {
@@ -154,7 +151,7 @@ const AboutHomeSchool = () => {
             )
         ) {
 
-            return `${IMAGE_URL}/${cleanImage}`;
+            return `${SERVER_URL}/${cleanImage}`;
 
         }
 
@@ -163,7 +160,7 @@ const AboutHomeSchool = () => {
         // filename.jpg
 
         return (
-            `${IMAGE_URL}/uploads/about/${cleanImage}`
+            `${SERVER_URL}/uploads/about/${cleanImage}`
         );
 
     };

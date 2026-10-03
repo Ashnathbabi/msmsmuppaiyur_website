@@ -1,3 +1,4 @@
+import { API_URL, getImageUrl } from "../../../config/api";
 
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -12,10 +13,6 @@ import {
   getFacilityBySlug,
 } from "../../../services/facilitiesService";
 
-const API_SERVER =
-  import.meta.env.VITE_API_URL
-    ? import.meta.env.VITE_API_URL.replace(/\/api\/?$/, "")
-    : "";
 
 const Facilities = () => {
   const location = useLocation();
@@ -41,22 +38,7 @@ const Facilities = () => {
   // IMAGE URL
   // =====================================================
 
-  const getImageUrl = (image) => {
-    if (!image) return "";
-
-    if (
-      image.startsWith("http://") ||
-      image.startsWith("https://")
-    ) {
-      return image;
-    }
-
-    if (image.startsWith("/")) {
-      return `${API_SERVER}${image}`;
-    }
-
-    return `${API_SERVER}/${image}`;
-  };
+  
 
   // =====================================================
   // LOAD SIDEBAR FACILITIES

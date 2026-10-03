@@ -1,12 +1,11 @@
+import { API_URL } from "../config/api";
 import { useEffect, useState } from "react";
 
 const useHeaderMenu = () => {
   const [menuItems, setMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const API_URL =
-    import.meta.env.VITE_API_URL ||
-    "/api";
+  
 
   useEffect(() => {
     const fetchMenuItems = async () => {

@@ -1,3 +1,4 @@
+import { API_URL } from "../../../config/api";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
@@ -11,12 +12,9 @@ import ratingShadow from "../../../assets/academics/rating-shadow.png";
    API URL
 ========================================================= */
 
-const API_ROOT =
-  import.meta.env.VITE_API_URL || "";
 
-const API_URL = API_ROOT.endsWith("/api")
-  ? API_ROOT
-  : `${API_ROOT}/api`;
+
+
 
 /* =========================================================
    DEFAULT CONTENT
